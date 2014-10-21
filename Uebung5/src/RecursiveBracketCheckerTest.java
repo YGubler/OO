@@ -10,6 +10,7 @@ public class RecursiveBracketCheckerTest {
 		bracketTest("Test8", "[()>", false);
 		bracketTest("Test9", "{)(][}", false);
 		bracketTest("Test10", "({)}", false);
+		bracketTest("TestEig", "()[]", true);
 	}
 
 	private static void bracketTest(String testName, String input, boolean expected) {
