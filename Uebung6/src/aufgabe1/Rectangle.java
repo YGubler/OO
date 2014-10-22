@@ -20,38 +20,37 @@ class Rectangle implements Shape {
 	}
 
 	int getWidth() {
-
+		return width;
 	}
 
 	int getHeight() {
-
+		return height;
 	}
 
 	void resize(int width, int height) {
-
+		this.width = width;
+		this.height = height;
 	}
 
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return left;
 	}
 
 	@Override
 	public int getY() {
 		// TODO Auto-generated method stub
-		return 0;
+		return top;
 	}
 
 	@Override
 	public void move(int x, int y) {
-		// TODO Auto-generated method stub
-
+		this.left += x;
+		this.top += y;
 	}
 
 	@Override
 	public int getAreaColor() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.color;
 	}
 }

@@ -24,25 +24,23 @@ class Circle implements Shape {
 	}
 
 	int getRadius() {
-
+		return radius;
 	}
 
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.centerX;
 	}
 
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.centerY;
 	}
 
 	@Override
 	public void move(int x, int y) {
-		// TODO Auto-generated method stub
-
+		this.centerX += x;
+		this.centerY += y;
 	}
 
 }

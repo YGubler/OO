@@ -1,11 +1,7 @@
 package aufgabe1;
 
 interface Text extends GrapicItem{
-	String getText() {
+	String getText();
 
-	}
-
-	int getTetColor() {
-
-	}
+	int getTetColor();
 }

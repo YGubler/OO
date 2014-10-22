@@ -2,15 +2,8 @@ package aufgabe1;
 
 interface GrapicItem {
 
-	int getX() {
+	int getX();
+	int getY();
 
-	}
-
-	int getY() {
-
-	}
-
-	void move(int x, int y) {
-
-	}
+	void move(int x, int y);
 }
