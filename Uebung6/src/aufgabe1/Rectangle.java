@@ -1,5 +1,7 @@
 package aufgabe1;
 
+import Aufgabe3_VisualisierungVonGrafiken.Visualization;
+
 class Rectangle implements Shape {
 	protected int left, top, width, height, color;
 
@@ -53,4 +55,23 @@ class Rectangle implements Shape {
 	public int getAreaColor() {
 		return this.color;
 	}
+
+	@Override
+	public void draw(Visualization visualization) {
+		visualization.drawRectangle(this.left, this.top, this.width,
+				this.height, this.color);
+
+	}
+
+	@Override
+	public boolean equals(Shape shape) {
+		if (this.getX() == shape.getX() && this.getY() == shape.getY()
+				&& this.getHeight() == ((Rectangle) shape).getHeight()
+				&& this.getWidth() == ((Rectangle) shape).getWidth()
+				&& this.color == ((Rectangle) shape).color) {
+			return true;
+		} else
+			return false;
+	}
+
 }

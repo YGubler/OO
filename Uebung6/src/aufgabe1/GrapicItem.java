@@ -1,6 +1,6 @@
 package aufgabe1;
 
-interface GrapicItem {
+public interface GrapicItem {
 
 	int getX();
 	int getY();

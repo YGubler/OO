@@ -1,6 +1,8 @@
 package aufgabe1;
 
-class Circle implements Shape {
+import Aufgabe3_VisualisierungVonGrafiken.Visualization;
+
+public class Circle implements Shape {
 	protected int centerX, centerY, radius, color;
 
 	@Override
@@ -43,4 +45,19 @@ class Circle implements Shape {
 		this.centerY += y;
 	}
 
+	@Override
+	public void draw(Visualization visualization) {
+		visualization.drawCircle(this.centerX, this.centerY, this.radius,
+				this.color);
+	}
+
+	@Override
+	public boolean equals(Shape shape) {
+		if (this.centerX == shape.getX() && this.centerY == shape.getY()
+				&& this.radius == ((Circle) shape).radius
+				&& this.color == ((Circle) shape).color) {
+			return true;
+		} else
+			return false;
+	}
 }
