@@ -65,13 +65,16 @@ class Rectangle implements Shape {
 
 	@Override
 	public boolean equals(Shape shape) {
-		if (this.getX() == shape.getX() && this.getY() == shape.getY()
-				&& this.getHeight() == ((Rectangle) shape).getHeight()
-				&& this.getWidth() == ((Rectangle) shape).getWidth()
-				&& this.color == ((Rectangle) shape).color) {
-			return true;
-		} else
-			return false;
+		if (getClass() == shape.getClass()) {
+			Rectangle rectangle = (Rectangle) shape;
+			if (this.getX() == shape.getX() && this.getY() == shape.getY()
+					&& this.getHeight() == rectangle.getHeight()
+					&& this.getWidth() == rectangle.getWidth()
+					&& this.color == rectangle.color) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
