@@ -1,4 +1,4 @@
-package aufgabe3_RobusterStack;
+package aufgabe4_InnereStackKonsistenz;
 
 public class Stack {
 	private final Object[] elements;
@@ -51,5 +51,8 @@ public class Stack {
 		return nextFreeIndex == elements.length;
 	}
 	
+	public void StackAllElementToCurrentNotNULL(){
+		
+	}
 
 }
