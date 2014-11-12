@@ -5,7 +5,7 @@ import java.io.ObjectInputStream.GetField;
 import java.util.Collections;
 import java.util.List;
 
-public class Program {
+public class Program {		
 	public static void main(String[] args) throws IOException {
 		List<Person> people = PeopleData.read("./src/aufgabe1_Sortierung/people.csv");
 		/*
