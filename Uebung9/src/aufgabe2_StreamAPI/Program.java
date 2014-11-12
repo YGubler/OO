@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream.GetField;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Program {
 	public static void main(String[] args) throws IOException {
@@ -60,10 +61,10 @@ public class Program {
 		 * Collectors in der Java API)
 		 */
 		System.out.println("\n\nAufgabe e)");
-		people
+		System.out.println(people
 			.stream()
-			.collect(groupingBy(p -> p.getCity))
-			;
+			.collect(Collectors.groupingBy(Person::getCity,
+					Collectors.mapping(Person::getAge,Collectors.toList()))));
 	}
 
 	static int compareByAge(Person p1, Person p2) {
