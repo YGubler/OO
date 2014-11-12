@@ -3,6 +3,7 @@ package aufgabe2_StreamAPI;
 import java.io.IOException;
 import java.io.ObjectInputStream.GetField;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,27 +16,21 @@ public class Program {
 		 * Buchstaben
 		 */
 		System.out.println("Aufgabe a)");
-		 people
-		 .stream()
-		 .filter(p -> p.getFirstName().length() <= 3 && p.getGender() ==
-		 Gender.FEMALE)
-		 .map(p -> p.getFirstName())
-		 .distinct()
-		 .forEach(System.out::println);
+		people.stream().filter(p -> p.getFirstName().length() <= 3 && p.getGender() == Gender.FEMALE)
+				.map(p -> p.getFirstName()).distinct().forEach(System.out::println);
 
 		/*
 		 * b) Durchschnittsalter aller männlicher Personen
 		 */
-		 System.out.println("\n\nAufgabe b)");
-		 System.out.println(people.stream().filter(p -> p.getGender() ==
-		 Gender.MALE).mapToInt(p -> p.getAge())
-		 .average().getAsDouble());
+		System.out.println("\n\nAufgabe b)");
+		System.out.println(people.stream().filter(p -> p.getGender() == Gender.MALE).mapToInt(p -> p.getAge())
+				.average().getAsDouble());
 
 		/*
 		 * c) Minimal und Maximalalter aller Personen in Zürich
 		 */
 		// Minimal
-		 System.out.println("\n\nAufgabe c) min");
+		System.out.println("\n\nAufgabe c) min");
 		System.out.println(people.stream().filter(p -> p.getCity().contains("Zürich")).mapToInt(p -> p.getAge()).min()
 				.getAsInt());
 
@@ -47,44 +42,22 @@ public class Program {
 		/*
 		 * d) Top 10 Verdiener (Jahreseinkommen)
 		 */
-		System.out.println("\n\n"
-				+ "Aufgabe d)");
-		people
-			.stream()
-			.map(p -> p.getLastName() + " " + p.getFirstName())
-			.sorted()
-			.limit(10)
-			.forEach(System.out::println);
+		System.out.println("\n\n" + "Aufgabe d)");
+		people.stream().map(p -> p.getLastName() + " " + p.getFirstName()).sorted().limit(10)
+				.forEach(System.out::println);
 
 		/*
 		 * e) Durchschnittsalter pro Ort (Konsultieren Sie hierfür die Klasse
 		 * Collectors in der Java API)
 		 */
 		System.out.println("\n\nAufgabe e)");
-		System.out.println(people
-			.stream()
-			.collect(Collectors.groupingBy(Person::getCity,
-					Collectors.mapping(Person::getAge,Collectors.toList()))));
-	}
-
-	static int compareByAge(Person p1, Person p2) {
-		return p1.getAge() - p2.getAge();
-	}
-
-	static int compareByAgeDESC(Person p1, Person p2) {
-		return p2.getAge() - p1.getAge();
-	}
-
-	static int compareByLastName(Person p1, Person p2) {
-		return p1.getLastName().compareTo(p2.getLastName());
-	}
-
-	static int compareByTownLastNameFirstName(Person p1, Person p2) {
-		int compValue = p1.getCity().compareTo(p2.getCity());
-		if (compValue == 0)
-			compValue = p1.getLastName().compareTo(p2.getLastName());
-		if (compValue == 0)
-			compValue = p1.getFirstName().compareTo(p2.getFirstName());
-		return compValue;
+		
+//		HashMap<String, List<Integer>> x = (HashMap<String, List<Integer>>) people.stream().collect(
+//				Collectors.groupingBy(Person::getCity, Collectors.mapping(Person::getAge, Collectors.toList())));
+//		
+//		for(HashMap)
+		System.out.println(people.stream().collect(
+				Collectors.groupingBy(Person::getCity, Collectors.mapping(Person::getAge, Collectors.toList())))
+				);
 	}
 }
