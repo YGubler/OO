@@ -1,17 +1,50 @@
 package aufgabe4_Kontaktverwaltung;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ContactBook {
   private Map<String, Contact> contactBook = new HashMap<>();
   
-  public void load() {
-    // TODO: implement
+
+@SuppressWarnings("unchecked")
+public void load() {
+    try (InputStream fis = new FileInputStream("src/aufgabe4_Kontaktverwaltung/Kontakte.txt")){
+    	try (ObjectInputStream stream = new ObjectInputStream(fis)){
+    		this.contactBook = ((Map<String, Contact>)stream.readObject());
+    	} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    } catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} 
   }
   
-  public void save() {
-    // TODO: implement
+  public void save(){
+    try (OutputStream fos = new FileOutputStream ("src/aufgabe4_Kontaktverwaltung/Kontakte.txt")){
+    	try (ObjectOutputStream stream = new ObjectOutputStream(fos)){
+    		stream.writeObject(contactBook);
+    	}
+    } catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
   
   public void addContact(String name, String address) {

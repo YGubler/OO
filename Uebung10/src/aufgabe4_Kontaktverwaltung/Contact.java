@@ -1,10 +1,11 @@
 package aufgabe4_Kontaktverwaltung;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Contact {
+public class Contact implements Serializable {
   private String name;
   private String address;
   private Set<PhoneEntry> numbers;
