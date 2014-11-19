@@ -1,0 +1,42 @@
+Dieser Text stammt aus dem Buch "Java ist auch eine Insel" von Christian Ullenboom
+(erhaeltlich bei Galileo Computing)
+
+Eine Online-Version dieses Buches ist unter http://www.galileocomputing.de/openbook/javainsel/
+verfuegbar.
+
+
+Computer sind uns deswegen so nuetzlich, da sie Daten bearbeiten. Dieser
+Bearbeitungszyklus beginnt beim Einlesen der Daten, beinhaltet das Verarbeiten
+und laesst die Ausgabe folgen. In der deutschen Literatur taucht dies als EVA[1]-
+Prinzip der Datenverarbeitungsanlagen auf. In fruehen EDV-Zeiten wurde die
+Eingabe vom Systemoperator auf Lochkarten gestanzt, doch gluecklicherweise sind
+diese Zeiten vorbei. Heutzutage speichern wir unsere Daten in Dateien (engl. Files[2] )
+ab. Da auch ein Programm aus Daten besteht, ist dies nur eine bestimmte Form
+einer Datei. Wichtig zu bemerken ist, dass eine Datei nur durch den Kontext interessant
+ist, andernfalls beinhaltet sie fuer uns keine Information - die Sichtweise auf eine
+Datei ist demnach wichtig.Um an die Information einer Datei zu kommen, muessen wir
+den Inhalt auslesen koennen. Auch muessen wir in der Lage sein, Dateien anzulegen, zu
+loeschen, umzubenennen und sie in Verzeichnissen zu strukturieren. Java bietet uns
+eine Vielzahl von Zugriffsmoeglichkeiten auf Dateien und ein wichtiges Schlagwort ist
+hierbei der Datenstrom (engl. Stream). Dieser entsteht beim Fluss der Daten von der
+Eingabe zur Verarbeitung hin zur Ausgabe. Durch Datenstroeme koennen Daten sehr
+elegant bewegt werden, ein Programm ohne Datenfluss ist eigentlich nicht denkbar.
+Die Eingabestroeme (engl. Input-Streams) sind zum Beispiel Tastatur, Datei oder
+Netzwerk und ueber die Ausgabestroeme (engl. Output-Streams) fliessen die Daten in
+ein Ausgabemedium, beispielsweise Drucker oder Datei, hinein. Die Kommunikation
+der Threads geschieht ueber Pipes. Sie sind eine spezielle Variante der Datenstroeme.
+In Java sind ueber dreissig Klassen zur Verarbeitung der Datenstroeme vorgesehen. Da
+die Datenstroeme allgemein und nicht an ein spezielles Ein- oder Ausgabeobjekt gebunden
+sind, koennen sie untereinander beliebig gemischt werden. Dies ist vergleichbar mit dem
+elektrischen Strom. Es gibt mehrere Stromlieferanten (Solarturmkraftwerke, Nutzung
+geothermischer Energie, Umwandlung von Meereswaermeenergie (OTEC)) und mehrere
+Verbraucher (Waermedecke, Mikrowelle, Auto), die die Energie wieder umsetzen.
+
+[1] EVA ist ein Akronym fuer "Eingabe, Verarbeitung, Ausgabe". Diese Reihenfolge
+    entspricht dem Arbeitsweg. Zunaechst werden die Eingaben von einem Eingabegeraet
+    gelesen, dann durch den Computer verarbeitet und anschliessend ausgegeben (in welcher
+    Form auch immer).
+
+[2] Das englische Wort "file" geht auf das lateinische Wort filum zurueck. Dies
+    bezeichnete frueher eine auf Draht aufgereite Sammlung von Schriftstuecken.
+
