@@ -10,7 +10,7 @@ public class ContactBookConsole {
 			while (!line.isEmpty()) {
 				try {
 					processLine(book, line);
-				} catch (InputException | IllegalArgumentException e) {
+				} catch (ContactBookException e) {
 					System.out.println(e.getMessage());
 				}
 				line = scanner.nextLine();
@@ -18,7 +18,7 @@ public class ContactBookConsole {
 		}
 	}
 
-	public static void processLine(ContactBook book, String line) throws InputException {
+	public static void processLine(ContactBook book, String line) throws ContactBookException {
 		CommandParser parser = new CommandParser(line);
 		if (parser.tryRead("load")) {
 			parser.checkEnd();
@@ -39,7 +39,7 @@ public class ContactBookConsole {
 				parser.checkEnd();
 				book.addNumber(name, number, description);
 			} else {
-				throw new InputException("Invalid add command");
+				throw new ContactBookException("Invalid add command");
 			}
 		} else if (parser.tryRead("find")) {
 			String name = parser.readString();
@@ -51,14 +51,7 @@ public class ContactBookConsole {
 				System.out.println(contact);
 			}
 		} else {
-			throw new InputException("Invalid command");
-		}
-	}
-
-	@SuppressWarnings("serial")
-	static class InputException extends Exception {
-		public InputException(String message) {
-			super(message);
+			throw new ContactBookException("Invalid command");
 		}
 	}
 
@@ -85,19 +78,19 @@ public class ContactBookConsole {
 			}
 		}
 
-		public void checkEnd() throws InputException {
+		public void checkEnd() throws ContactBookException {
 			if (line.length() == 1) {
-				throw new InputException("Premature end of command");
+				throw new ContactBookException("Premature end of command");
 			}
 		}
 
-		public String readString() throws InputException {
+		public String readString() throws ContactBookException {
 			if (!tryRead("\"")) {
-				throw new InputException("opening double quote missing");
+				throw new ContactBookException("Opening double quote missing");
 			}
 			int index = line.indexOf('\"');
 			if (index < 0) {
-				throw new InputException("closing double quote missing");
+				throw new ContactBookException("closing double quote missing");
 			}
 			String text = line.substring(0, index);
 			line = line.substring(index + 1);
