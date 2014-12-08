@@ -1,5 +1,7 @@
 package aufgabe2_ReverseMap;
 
+import java.util.Iterator;
+
 class Test_ReverseMap {
 
 	public static void main(String[] args) {
@@ -15,11 +17,23 @@ class Test_ReverseMap {
 		System.out.println(name);
 		System.out.println(number);
 		
-		map.clear();
-		System.out.println(map.leftValues());
-//		for (Integer lefts : map.leftValues()){
-//			System.out.println(lefts);
-//		}
+//		map.clear();
+//		System.out.println(map.leftValues());
+//		map.leftValues();
+//		
+//		Iterator<Integer> itL = map.leftValues();
+//		System.out.println(itL.next());
+//		System.out.println(map.leftValues());
+//		for (String lefts : map){
+//				System.out.println(lefts);
+//		};
+		
+		System.out.println("\nGet all on the Right Side");
+		int i = 0;
+		Iterator<String> rights = map.rightValues();
+		while (rights.hasNext()) {
+		System.out.println(++i + ". right: " + rights.next());
+		}
 		
 		System.out.println("\n" + map.getRight(123456)); // returns “Hans Meier”
 		System.out.println(map.getLeft("Clara Müller")); // returns 333999

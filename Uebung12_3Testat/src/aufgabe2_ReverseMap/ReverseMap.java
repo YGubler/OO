@@ -18,7 +18,7 @@ class ReverseMap<L, R>{
 		}
 	}
 	
-	R getRight(L left){
+	public R getRight(L left){
 		if (keyToValueMap.containsKey(left)){			
 			return keyToValueMap.get(left);
 		} else {
@@ -26,7 +26,7 @@ class ReverseMap<L, R>{
 		}
 	}
 	
-	L getLeft(R right){
+	public L getLeft(R right){
 		if (valueToKeyMap.containsKey(right)){
 			return valueToKeyMap.get(right);			
 		} else {
@@ -34,26 +34,38 @@ class ReverseMap<L, R>{
 		}
 	}
 	
-	Iterator<L> leftValues(){
-		Iterator<L> leftIterator = keyToValueMap.keySet().iterator();
-		
-		while (leftIterator.hasNext()){
-			L left = leftIterator.next();
-		}
-	return leftIterator;
-		
+	
+//	public Iterator<L> leftValues(){
+//		keyToValueMap.e
+//		class leftValuesIterator implements Iterator<L>{
+//			private Iterator<L> itleft = null;
+//			@Override
+//			public boolean hasNext() {
+//				System.out.println("test");
+//				return itleft.hasNext();
+//			}
+//
+//			@Override
+//			public L next() {
+//				return itleft.next();
+//			}
+//			
+//		}
+//	return new leftValuesIterator();
+//	}
+	
+	public Iterator<R> rightValues(){
+		return valueToKeyMap.entrySet().stream().map(i -> i.getKey()).iterator();
 	}
 	
-//	Iterator<R> rightValues(){
-//		
-//	}
-//	
-	int size(){
+	public int size(){
 		return keyToValueMap.size();
 	}
 	
-	void clear(){
+	public void clear(){
 		keyToValueMap.clear();
 		valueToKeyMap.clear();
 	}
+
+
 }
