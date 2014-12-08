@@ -35,73 +35,59 @@ class ReverseMap<L, R> {
 		}
 	}
 
-	class leftValuesIterator implements Iterator<L> {
-		private Iterator<L> itleft = keyToValueMap.keySet().iterator();
-		private L current;
+	class ReverseMapIterator<K, V> implements Iterator<K> {
+		private Iterator<K> itKey;
+		private Map<K, V> key;
+		private Map<V, K> value;
+		private K current;
 
-		@Override
-		public boolean hasNext() {
-			return itleft.hasNext();
+		public ReverseMapIterator(Map<K, V> key, Map<V, K> value) {
+			itKey = key.keySet().iterator();
+			this.key = key;
+			this.value = value;
 		}
 
 		@Override
-		public L next() {
-			current = itleft.next();
+		public boolean hasNext() {
+			return itKey.hasNext();
+		}
+
+		@Override
+		public K next() {
+			current = itKey.next();
 			return current;
 		}
 
 		@Override
 		public void remove() {
-			valueToKeyMap.remove(keyToValueMap.get(current));
-			itleft.remove();
-		}
-
-	}
-	
-	class rightValuesIterator implements Iterator<R> {
-		private Iterator<R> itright = valueToKeyMap.keySet().iterator();
-		private R current;
-
-		@Override
-		public boolean hasNext() {
-			return itright.hasNext();
-		}
-
-		@Override
-		public R next() {
-			current = itright.next();
-			return current;
-		}
-
-		@Override
-		public void remove() {
-			keyToValueMap.remove(valueToKeyMap.get(current));
-			itright.remove();
+			value.remove(key.get(current));
+			itKey.remove();
 		}
 
 	}
 
 	public Iterator<L> leftValues() {
-		return new leftValuesIterator();
+		return new ReverseMapIterator<L, R>(keyToValueMap, valueToKeyMap);
 	}
 
 	public Iterator<R> rightValues() {
-		return new rightValuesIterator();
-		
-		//Folgende Ansätze funktionieren nur ohne remove()
+		return new ReverseMapIterator<R, L>(valueToKeyMap, keyToValueMap);
+
+		// Folgende Ansätze funktionieren nur ohne remove()
 		// return valueToKeyMap.entrySet().stream().map(i ->
 		// i.getKey()).iterator();
-//		return valueToKeyMap.keySet().iterator();
+		// return valueToKeyMap.keySet().iterator();
 	}
-	
-	public Iterable<L> getLeft() {
-		return new Iterable<L>() {
-			@Override
-			public Iterator<L> iterator() {
-				return keyToValueMap.keySet().iterator();
-			}
-		};
-	}
+
+//	nur für for-each Implementation notwendig
+//	public Iterable<L> getLeft() {
+//		return new Iterable<L>() {
+//			@Override
+//			public Iterator<L> iterator() {
+//				return keyToValueMap.keySet().iterator();
+//			}
+//		};
+//	}
 
 	public int size() {
 		return keyToValueMap.size();
