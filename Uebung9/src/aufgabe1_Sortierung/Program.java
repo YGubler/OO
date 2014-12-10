@@ -13,7 +13,7 @@ public class Program {
 		 */
 
 		// Aufsteigend nach Alter
-		// Collections.sort(people, Program::compareByAge);
+		 Collections.sort(people, Program::compareByAge);
 
 		// Absteigend nach Alter
 		// Collections.sort(people, Program::compareByAgeDESC);
@@ -76,5 +76,22 @@ public class Program {
 		if (compValue == 0)
 			compValue = p1.getFirstName().compareTo(p2.getFirstName());
 		return compValue;
+	}
+	
+	interface A {
+		int iu(int i);
+	}
+	
+	static class B {
+		void i(){
+			iud(B::a);
+		}
+		void iud(A a){
+			System.out.println(a.iu(1));
+		}
+		
+		static int a(int i){
+			return i;
+		}
 	}
 }
