@@ -119,6 +119,14 @@ public class BankAccountTest {
 		}
 	}
 	
+	@Test(timeout = DEFAULT_TIMEOUT, expected = BankLimitException.class)
+	public void testDepositAmountOverflow() throws BankLimitException {
+		BankAccount acc = new BankAccount(99);
+		acc.deposit(10);
+		acc.deposit(Long.MAX_VALUE);
+
+	}
+	
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void testTransferAmountNegativNotChangeBalance() throws BankLimitException{
 		BankAccount acc1 = new BankAccount(1);
@@ -133,5 +141,18 @@ public class BankAccountTest {
 			assertEquals("Transfer negative Amount not allowed to change Balance", balance2, acc2.getBalance());
 		}
 		
+	}
+	
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void testTransferOK() throws BankLimitException{
+		BankAccount acc1 = new BankAccount(1);
+		BankAccount acc2 = new BankAccount(2);
+		long balance1 = acc1.getBalance();
+		long balance2 = acc2.getBalance();
+		Bank bank = new Bank();
+		bank.transfer(acc1, acc2, 1);
+		assertEquals("Transfere nicht OK", balance1 - 1, acc1.getBalance());
+		assertEquals("Transfere nicht OK", balance2 + 1, acc2.getBalance());
+			
 	}
 }
