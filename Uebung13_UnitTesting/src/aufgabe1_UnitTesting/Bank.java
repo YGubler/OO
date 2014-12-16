@@ -13,8 +13,17 @@ public class Bank {
 	}
 
 	public void transfer(BankAccount from, BankAccount to, long amount) throws BankLimitException {
-		to.deposit(amount);
-		from.withdraw(amount);
+		long oldTo = to.getBalance();
+		long oldFrom = from.getBalance();
+		try{
+			to.deposit(amount);
+			from.withdraw(amount);			
+		} catch (BankLimitException e){
+			System.err.println(e.getMessage() + "\tBalanced from From und from To was reseted to the value before transaction");
+			to.setBalance(oldTo);
+			from.setBalance(oldFrom);
+			throw e;
+		}
 	}
 
 	public BankAccount getAccount(long id) {
