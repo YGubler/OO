@@ -1,0 +1,5 @@
+package instanceOf;
+
+class Figure {
+
+}
